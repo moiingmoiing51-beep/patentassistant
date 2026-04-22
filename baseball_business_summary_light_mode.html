@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>유소년 야구 사업 구조 정리</title>
+  <style>
+    :root {
+      --bg: #f5f6f8;
+      --surface: #ffffff;
+      --surface-2: #f8f9fb;
+      --text: #111827;
+      --muted: #5b6472;
+      --line: #e5e7eb;
+      --line-strong: #d5d9e0;
+      --accent: #2f6fed;
+      --accent-soft: #f3f7ff;
+      --shadow: 0 10px 30px rgba(17, 24, 39, 0.06);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --max: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.68;
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .hero,
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 40px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 54px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .lead {
+      margin: 18px 0 0;
+      max-width: 920px;
+      font-size: 19px;
+      color: var(--muted);
+    }
+
+    .hero-summary {
+      margin-top: 24px;
+      padding: 20px 22px;
+      border-radius: 18px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .section {
+      margin-top: 24px;
+      overflow: hidden;
+    }
+
+    .section-head {
+      padding: 28px 28px 0;
+    }
+
+    .section-body {
+      padding: 22px 28px 28px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.16;
+      letter-spacing: -0.025em;
+    }
+
+    .section-sub {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+    }
+
+    .card.soft {
+      background: var(--surface-2);
+    }
+
+    .card.accent {
+      background: var(--accent-soft);
+      border-color: #dbe7ff;
+    }
+
+    .label {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .accent .label {
+      color: var(--accent);
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    p { margin: 0; }
+
+    ul, ol {
+      margin: 12px 0 0;
+      padding-left: 18px;
+    }
+
+    li + li { margin-top: 8px; }
+
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .vs {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 70px;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .quote {
+      margin-top: 18px;
+      padding: 18px 20px;
+      border-left: 4px solid var(--accent);
+      border-radius: 0 14px 14px 0;
+      background: #fafcff;
+      color: #274374;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--line);
+      margin: 22px 0;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .number-box {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .number {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 34px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      border: 1px solid var(--line-strong);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text);
+      margin-top: 1px;
+    }
+
+    .question-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .footer-note {
+      margin-top: 20px;
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: var(--surface-2);
+      border: 1px dashed var(--line-strong);
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .compare,
+      .question-list {
+        grid-template-columns: 1fr;
+      }
+
+      .hero { padding: 28px; }
+      .section-head { padding: 24px 20px 0; }
+      .section-body { padding: 20px; }
+      h2 { font-size: 26px; }
+      .lead { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">BASEBALL BUSINESS · INTERNAL DRAFT</div>
+      <h1>유소년 야구 사업 구조 정리</h1>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="eyebrow">01 · WHAT MAKES US DIFFERENT</div>
+        <h2>단순한 야구 아카데미가 아니라, 선수에게 기회를 주는 구조를 만듭니다</h2>
+        <p class="section-sub">
+          기존 야구 아카데미는 훈련 그 자체에 집중해요. 
+          훈련을 넘어 선수의 실력, 발전 과정을 외부에서도 이해할 수 있는 형태로 만듭니다.
+        </p>
+      </div>
+      <div class="section-body">
+        <div class="compare">
+          <div class="card soft">
+            <div class="label">기존 야구 아카데미</div>
+            <h3>선수를 가르치는 곳</h3>
+            <ul>
+              <li>기본 목적은 훈련과 실력 향상이에요.</li>
+              <li>선수의 변화가 코치의 머릿속이나 현장 경험으로 남는 경우가 많아요.</li>
+              <li>외부 코치, 대학, 스카우트가 보기 쉬운 형태로 정리되지 않는 경우가 많아요.</li>
+              <li>결국 코칭을 잘하는 곳으로는 남을 수 있지만, 기회를 만드는 구조까지는 잘 이어지지 않아요.</li>
+            </ul>
+          </div>
+          <div class="vs">VS</div>
+          <div class="card accent">
+            <div class="label">우리가 만들 구조</div>
+            <h3>실력을 정리하고 보여주고 연결하는 곳</h3>
+            <ul>
+              <li>코칭은 기본이고, 그 결과를 영상과 데이터로 남겨요.</li>
+              <li>선수의 강점, 변화, 성장 흐름을 정리해서 비교 가능하게 만들어요.</li>
+              <li>외부 평가자가 이해할 수 있는 형태로 번역해요.</li>
+              <li>목표는 훈련 자체가 아니라, 코칭 결과가 기회로 이어질 가능성을 만드는 거예요.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="quote">
+          잘 가르치는 곳을 넘어서, “선수 실력을 외부에서도 판단할 수 있는 구조”를 만듭니다.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="eyebrow">02 · SYSTEM VS PERSON</div>
+        <h2>기존 아카데미는 사람 중심이고, 우리는 시스템 중심으로 가야 합니다</h2>
+      </div>
+      <div class="section-body">
+        <div class="grid-2">
+          <div class="card">
+            <div class="label">사람 중심 구조의 특징</div>
+            <h3>코치가 핵심 자산</h3>
+            <ul>
+              <li>코치의 시간과 노동력이 곧 매출이에요.</li>
+              <li>선수 수가 늘어나면 결국 코치 수와 운영 부담도 같이 늘어요.</li>
+              <li>핵심 코치가 이탈하면 바로 코칭 품질과 매출이 무너질 수 있어요.</li>
+              <li>잘 될 수도 있지만 핵심 인력에 의존하게 됩니다.</li>
+            </ul>
+          </div>
+          <div class="card accent">
+            <div class="label">시스템 중심 구조의 특징</div>
+            <h3>선수 데이터가 남는 구조</h3>
+            <ul>
+              <li>선수별 영상 정리 기준이 있어요.</li>
+              <li>측정 데이터를 표준화해서 누적할 수 있어요.</li>
+              <li>부모, 선수, 코치, 외부 평가자용 자료로 다시 가공할 수 있어요.</li>
+              <li>사람이 바뀌어도 구조와 기록이 남고, 그 기록이 매출의 기반이 됩니다.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pill-row">
+          <div class="pill">선수 영상 아카이브</div>
+          <div class="pill">측정 데이터 표준화</div>
+          <div class="pill">성장 추적 리포트</div>
+          <div class="pill">외부 전달용 프로필</div>
+          <div class="pill">포지션별 비교 구조</div>
+        </div>
+        <div class="divider"></div>
+        <div class="small">
+          훈련만 하면 경험이 남고 끝나요. 하지만 영상과 데이터가 쌓이면, 다음 선수 모집과 프리미엄 상품,
+          외부 연결, 장기 확장까지 이어질 수 있는 자산이 됩니다.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="eyebrow">03 · SCOUTING OPPORTUNITY</div>
+        <h2>핵심은 유학 판매가 아니라, 스카웃될 수 있게 보이게 만드는 구조입니다</h2>
+        <p class="section-sub">
+          유소년, 청소년 야구 선수 중에는 비용이 부담되는 가정이 많아요. 그래서 처음부터 유학, 미국, 해외 캠프를 전면에 두면
+          오히려 시장 저항이 커질 수 있어요.
+        </p>
+      </div>
+      <div class="section-body">
+        <div class="grid-2">
+          <div class="card soft">
+            <div class="label">부담이 큰 메시지</div>
+            <h3>처음부터 해외·유학 중심 설명</h3>
+            <ul>
+              <li>부모는 바로 비용과 장벽을 떠올려요.</li>
+              <li>“우리 집은 어렵겠다”는 생각이 먼저 들 수 있어요.</li>
+              <li>실력 있는 선수도 기회보다 형편 때문에 출발선에서 이탈할 수 있어요.</li>
+            </ul>
+          </div>
+          <div class="card accent">
+            <div class="label">현실적인 메시지</div>
+            <h3>국내에만 있어도 해외서 찾게 만드는 구조</h3>
+            <ul>
+              <li>선수의 실력을 영상과 데이터로 정리해요.</li>
+              <li>해외 코치, 대학, 스카우트가 이해할 수 있는 형태로 가공해요.</li>
+              <li>돈이 아닌 실력이 기회로 연결될 가능성을 먼저 만드는 구조예요.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="quote">
+          돈보다 실력으로 해외 진출 기회를 만들 수 있는, 선수 노출 구조를 만드는 사업입니다.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="eyebrow">04 · WHY COACHING ALONE DOES NOT SCALE</div>
+        <h2>코칭만 하면 좋은 아카데미는 될 수 있어도, 큰 사업은 되기 어렵습니다</h2>
+        <p class="section-sub">
+          코칭만 보면 '좋은 코치가 선수만 잘 가르치면 된다'도 틀린 말은 아닙니다.
+          하지만 "사업"은 다르게 봐야 해요.
+        </p>
+      </div>
+      <div class="section-body">
+        <div class="compare">
+          <div class="card soft">
+            <div class="label">코칭만 하는 구조</div>
+            <h3>인력 의존 구조</h3>
+            <ul>
+              <li>사람이 직접 붙어 있어야 돈이 벌려요.</li>
+              <li>매출을 키우려면 결국 코치와 운영인력을 더 넣어야 해요.</li>
+              <li>핵심 인력이 빠지면 고객 이탈 위험이 커져요.</li>
+              <li>잘 운영해도 결국 지역 기반 서비스업, 즉 큰 자영업 구조에 머물 가능성이 높아요.</li>
+            </ul>
+          </div>
+          <div class="vs">→</div>
+          <div class="card accent">
+            <div class="label">확장 가능한 구조</div>
+            <h3>코칭을 기반으로 여러 매출을 붙이는 구조</h3>
+            <ul>
+              <li>코칭은 신뢰 확보 수단이에요.</li>
+              <li>그 신뢰를 바탕으로 리포트, 이벤트, 상품, 연계 서비스가 붙어요.</li>
+              <li>한 번 확보한 선수와 부모 관계를 더 넓은 사업으로 확장할 수 있어요.</li>
+              <li>이때부터 코칭업이 아니라 플랫폼형 사업에 가까워집니다.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="quote">
+          코칭은 사업의 시작점이에요. 사업 규모를 키우는 엔진은 코칭 밖에 붙는 구조예요.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="eyebrow">05 · SCALE-UP OPPORTUNITIES</div>
+        <h2>사업 규모를 키우려면 코칭 밖의 매출 구조가 붙어야 합니다</h2>
+      </div>
+      <div class="section-body">
+        <div class="grid-2">
+          <div class="card">
+            <div class="number-box">
+              <div class="number">1</div>
+              <div>
+                <h3>커머스 확장</h3>
+                <p>선수와 부모가 실제로 필요로 하는 용품, 훈련 보조용품, 회복용품, 영양 상품 등으로 확장할 수 있어요.</p>
+                <ul>
+                  <li>레슨비 외 추가 매출이 생겨요.</li>
+                  <li>고객 1명당 매출을 높일 수 있어요.</li>
+                  <li>반복 구매 구조가 발생해요.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="number-box">
+              <div class="number">2</div>
+              <div>
+                <h3>병원 / 재활 / 검진 연계</h3>
+                <p>야구는 부상 관리와 재활, 성장기 신체 관리 이슈가 크기 때문에 병원 연계는 매우 중요한 확장 포인트예요.</p>
+                <ul>
+                  <li>부상 예방, 검진, 재활 연계가 가능해요.</li>
+                  <li>부모 입장에서 신뢰도가 올라가요.</li>
+                  <li>훈련 사업이 아니라 선수 관리 플랫폼으로 확장할 수 있어요.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="number-box">
+              <div class="number">3</div>
+              <div>
+                <h3>데이터 리포트</h3>
+                <p>선수별 성장 추적, 비교 리포트, 외부 전달용 자료는 프리미엄 상품이 될 수 있어요.</p>
+                <ul>
+                  <li>부모가 이해하기 쉬운 자료가 돼요.</li>
+                  <li>선수 본인에게도 동기부여가 돼요.</li>
+                  <li>대학, 스카우터 등에게 보여줄 자료로 발전할 수 있어요.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="number-box">
+              <div class="number">4</div>
+              <div>
+                <h3>행사형 매출</h3>
+                <p>측정회, 쇼케이스, 캠프, 포지션별 이벤트 같은 구조는 반복 가능한 행사 매출로 이어질 수 있어요.</p>
+                <ul>
+                  <li>코칭 외 별도 매출을 만들 수 있어요.</li>
+                  <li>신규 선수 유입 창구가 돼요.</li>
+                  <li>노출과 매출을 동시에 만들 수 있어요.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="hero-summary" style="margin-top:0;">
+          즉, 코칭만 하면 좋은 현장은 만들 수 있어요. 하지만 <strong>코칭 + 리포트 + 커머스 + 병원 연계 + 행사형 매출</strong>까지 붙어야
+          사업 규모를 키울 수 있고, 투자 가능한 구조로도 만들 수 있어요. 
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="eyebrow">06 · WHAT WE MUST ASK NOW</div>
+        <h2>확인해야 할 것</h2>
+      </div>
+      <div class="section-body">
+        <div class="grid-2" style="margin-bottom:16px;">
+          <div class="card soft">
+              <div class="label">확인이 필요한 부분 1</div>
+            <h3>실제 연결 가능성</h3>
+            <ul>
+              <li>해외 코치 / 대학 / 스카우트와 실제 연락 가능한 네트워크</li>
+              <li>정기 쇼케이스 운영 가능 여부</li>
+              <li>온라인 리포트 배포 구조와 회신 접점</li>
+            </ul>
+          </div>
+          <div class="card accent">
+            <div class="label">확인이 필요한 부분 2</div>
+            <h3>네트워크와 평가 기준</h3>
+            <ul>
+              <li>국내와 해외 스카우터/팀에서 다르게 보는 포인트가 있나요?</li>
+              <li>해외에 보여볼 가치가 있는 선수라고 판단하는 기준은 무엇인가요?</li>
+              <li>정기 쇼케이스를 한다면 어떤 형태가 가장 현실적이라고 보나요?</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+</body>
+</html>
